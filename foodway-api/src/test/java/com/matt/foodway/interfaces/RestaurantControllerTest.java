@@ -1,8 +1,11 @@
 package com.matt.foodway.interfaces;
 
+import com.matt.foodway.domain.RestaurantRepository;
+import com.matt.foodway.domain.RestaurantRepositoryImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.core.StringContains.containsString;
@@ -15,6 +18,9 @@ class RestaurantControllerTest {
 
     @Autowired
     private MockMvc mvc;
+
+    @SpyBean(RestaurantRepositoryImpl.class)
+    private RestaurantRepository restaurantRepository;
 
     @Test
     public void list() throws Exception {
