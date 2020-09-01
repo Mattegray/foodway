@@ -1,5 +1,6 @@
 package com.matt.foodway.interfaces;
 
+import com.matt.foodway.application.RestaurantService;
 import com.matt.foodway.domain.MenuItemRepository;
 import com.matt.foodway.domain.MenuItemRepositoryImpl;
 import com.matt.foodway.domain.RestaurantRepository;
@@ -20,6 +21,9 @@ class RestaurantControllerTest {
 
     @Autowired
     private MockMvc mvc;
+
+    @SpyBean(RestaurantService.class)
+    private RestaurantService restaurantService;
 
     @SpyBean(RestaurantRepositoryImpl.class)
     private RestaurantRepository restaurantRepository;
