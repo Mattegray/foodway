@@ -1,5 +1,7 @@
 package com.matt.foodway.interfaces;
 
+import com.matt.foodway.domain.MenuItem;
+import com.matt.foodway.domain.MenuItemRepository;
 import com.matt.foodway.domain.Restaurant;
 import com.matt.foodway.domain.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,18 +15,25 @@ import java.util.List;
 public class RestaurantController {
 
     @Autowired
-    private RestaurantRepository repository;
+    private RestaurantRepository restaurantRepository;
+
+    @Autowired
+    private MenuItemRepository menuItemRepository;
 
     @GetMapping("/restaurants")
     public List<Restaurant> list() {
-        List<Restaurant> restaurants = repository.findAll();
+        List<Restaurant> restaurants = restaurantRepository.findAll();
 
         return restaurants;
     }
 
     @GetMapping("/restaurants/{id}")
     public Restaurant detail(@PathVariable("id") Long id) {
-        Restaurant restaurant = repository.findById(id);
+        Restaurant restaurant = restaurantRepository.findById(id);
+
+        List<MenuItem> menuItems = menuItemRepository.findAllByRestaurantId(id);
+        restaurant.setMenuItems(menuItems);
+
         return restaurant;
     }
 }

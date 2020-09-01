@@ -1,5 +1,7 @@
 package com.matt.foodway.interfaces;
 
+import com.matt.foodway.domain.MenuItemRepository;
+import com.matt.foodway.domain.MenuItemRepositoryImpl;
 import com.matt.foodway.domain.RestaurantRepository;
 import com.matt.foodway.domain.RestaurantRepositoryImpl;
 import org.junit.jupiter.api.Test;
@@ -22,6 +24,9 @@ class RestaurantControllerTest {
     @SpyBean(RestaurantRepositoryImpl.class)
     private RestaurantRepository restaurantRepository;
 
+    @SpyBean(MenuItemRepositoryImpl.class)
+    private MenuItemRepository menuItemRepository;
+
     @Test
     public void list() throws Exception {
         mvc.perform(get("/restaurants"))
@@ -43,6 +48,9 @@ class RestaurantControllerTest {
                 ))
                 .andExpect(content().string(containsString(
                         "\"name\":\"Bob zip\"")
+                ))
+                .andExpect(content().string(
+                        containsString("Kimchi")
                 ));
 
         mvc.perform(get("/restaurants/2020"))
