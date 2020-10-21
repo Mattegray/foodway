@@ -1,0 +1,11 @@
+{
+  "name": "foodway-web",
+  "version": "1.0.0",
+  "description": "FoodWay Web Project",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Matt",
+  "license": "ISC"
+}
