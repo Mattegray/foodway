@@ -1,6 +1,7 @@
 package com.matt.foodway.application;
 
 import com.matt.foodway.domain.*;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentMatchers;
@@ -13,6 +14,7 @@ import java.util.Optional;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 
@@ -66,7 +68,7 @@ class RestaurantServiceTest  {
     }
 
     @Test
-    public void getRestaurant() {
+    public void getRestaurantWithExisted() {
         Restaurant restaurant = restaurantService.getRestaurant(1004L);
 
         assertThat(restaurant.getId(), is(1004L));
@@ -74,6 +76,13 @@ class RestaurantServiceTest  {
         MenuItem menuItem = restaurant.getMenuItems().get(0);
         assertThat(menuItem.getName(), is("Kimchi"));
 
+    }
+
+    @Test
+    public void getRestaurantWithNotExisted() {
+        assertThatThrownBy(() -> {
+            restaurantService.getRestaurant(404L);
+        }).isInstanceOf(RestaurantNotFoundException.class);
     }
 
     @Test

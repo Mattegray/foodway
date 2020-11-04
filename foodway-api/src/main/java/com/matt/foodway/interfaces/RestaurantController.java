@@ -1,10 +1,7 @@
 package com.matt.foodway.interfaces;
 
 import com.matt.foodway.application.RestaurantService;
-import com.matt.foodway.domain.MenuItem;
-import com.matt.foodway.domain.MenuItemRepository;
-import com.matt.foodway.domain.Restaurant;
-import com.matt.foodway.domain.RestaurantRepository;
+import com.matt.foodway.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
