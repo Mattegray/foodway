@@ -43,5 +43,5 @@ public class RegionServiceTests {
         Region region = regions.get(0);
         assertThat(region.getName(), is("Seoul"));
     }
-     
+
 }
